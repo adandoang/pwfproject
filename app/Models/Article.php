@@ -13,7 +13,7 @@ class Article extends Model
     protected $primaryKey = 'id_article';
 
     protected $fillable = [
-        'admin_id', 'title', 'kutipan', 'meta_keyword', 'meta_description', 'body'
+        'admin_id', 'title', 'kutipan', 'meta_keyword', 'meta_description', 'body', 'thumbnail'
     ];
 
     public function admin()

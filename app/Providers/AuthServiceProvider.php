@@ -22,10 +22,9 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // Register the admin provider
         Auth::provider('admins', function ($app, array $config) {
-            return $app['auth'] instanceof \Illuminate\Auth\AuthManager
-                ? $app['auth']->createEloquentProvider($config)
-                : new \Illuminate\Auth\EloquentUserProvider($app['hash'], $config['model']);
+            return new \Illuminate\Auth\EloquentUserProvider($app['hash'], $config['model']);
         });
     }
 }

@@ -7,9 +7,16 @@ use Illuminate\Http\Request;
 
 class PublicArticleController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $articles = Article::with('admin', 'categories')->latest()->paginate(10);
+        $query = Article::query()->with('admin', 'categories');
+
+        if ($request->has('search') && $request->search != '') {
+            $query->where('title', 'like', '%' . $request->search . '%');
+        }
+
+        $articles = $query->latest()->paginate(10)->withQueryString();
+
         return view('public.articles.index', compact('articles'));
     }
 

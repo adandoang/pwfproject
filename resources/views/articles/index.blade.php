@@ -3,60 +3,61 @@
 @section('title', 'Manage Articles')
 
 @section('content')
-    <h1 class="text-3xl font-bold text-gray-800 mb-6">Manage Articles</h1>
-
-    <div class="mb-6">
-        <a href="{{ route('articles.create') }}" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+    <div class="flex justify-between items-center mb-8">
+        <h1 class="text-4xl font-bold font-space text-white">Manage Articles</h1>
+        <a href="{{ route('articles.create') }}" class="bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white font-bold py-2 px-6 rounded-lg shadow-lg transition-transform transform hover:scale-105">
             Create New Article
         </a>
     </div>
 
     @if (session('success'))
-        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
+        <div class="bg-green-500/20 border border-green-500 text-green-300 px-4 py-3 rounded-lg relative mb-6" role="alert">
             <span class="block sm:inline">{{ session('success') }}</span>
         </div>
     @endif
 
     @if ($articles->isEmpty())
-        <p class="text-gray-600">No articles available.</p>
+        <div class="text-center py-16 bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl">
+            <p class="text-xl text-gray-400">No articles available. Create your first one!</p>
+        </div>
     @else
-        <div class="bg-white shadow-md rounded-lg overflow-hidden">
-            <table class="min-w-full leading-normal">
+        <div class="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl shadow-lg overflow-hidden">
+            <table class="min-w-full">
                 <thead>
                     <tr>
-                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                             Title
                         </th>
-                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                             Author
                         </th>
-                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                             Created At
                         </th>
-                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                        <th class="px-6 py-3 text-right text-xs font-medium text-gray-400 uppercase tracking-wider">
                             Actions
                         </th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="divide-y divide-gray-700">
                     @foreach ($articles as $article)
                         <tr>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <p class="text-gray-900 whitespace-no-wrap">{{ $article->title }}</p>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-white">
+                                {{ $article->title }}
                             </td>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <p class="text-gray-900 whitespace-no-wrap">{{ $article->admin->nama_admin }}</p>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
+                                {{ $article->admin->nama_admin }}
                             </td>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <p class="text-gray-900 whitespace-no-wrap">{{ $article->created_at->format('M d, Y') }}</p>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
+                                {{ $article->created_at->format('M d, Y') }}
                             </td>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <a href="{{ route('articles.show', $article->id_article) }}" class="text-indigo-600 hover:text-indigo-900 mr-3">View</a>
-                                <a href="{{ route('articles.edit', $article->id_article) }}" class="text-blue-600 hover:text-blue-900 mr-3">Edit</a>
+                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                <a href="{{ route('public.articles.show', $article->id_article) }}" target="_blank" class="text-purple-400 hover:text-purple-300 mr-4">View</a>
+                                <a href="{{ route('articles.edit', $article->id_article) }}" class="text-blue-400 hover:text-blue-300 mr-4">Edit</a>
                                 <form action="{{ route('articles.destroy', $article->id_article) }}" method="POST" class="inline-block">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="text-red-600 hover:text-red-900" onclick="return confirm('Are you sure you want to delete this article?')">Delete</button>
+                                    <button type="submit" class="text-red-400 hover:text-red-300" onclick="return confirm('Are you sure you want to delete this article?')">Delete</button>
                                 </form>
                             </td>
                         </tr>
