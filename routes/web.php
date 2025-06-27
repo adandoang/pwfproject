@@ -10,6 +10,7 @@ use App\Http\Controllers\PublicArticleController;
 // Public routes
 Route::get('/', [PublicArticleController::class, 'index'])->name('home');
 Route::get('/public/articles/{id_article}', [PublicArticleController::class, 'show'])->name('public.articles.show');
+Route::get('/category/{id_category}', [PublicArticleController::class, 'byCategory'])->name('public.articles.byCategory');
 
 // Authentication routes
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');

@@ -23,7 +23,7 @@
         <div class="container mx-auto flex justify-between items-center">
             <a href="{{ route('home') }}" class="text-2xl font-bold font-space bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">Business Articles</a>
             <div class="space-x-4">
-                {{-- Login button removed from public view --}}
+                <a href="{{ route('login') }}" class="bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white font-bold py-2 px-6 rounded-lg shadow-lg transition-transform transform hover:scale-105">Login</a>
             </div>
         </div>
     </nav>
