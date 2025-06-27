@@ -10,21 +10,24 @@ class PublicArticleController extends Controller
     public function index(Request $request)
     {
         $query = Article::query()->with('admin', 'categories');
-
-        // Ambil 3 artikel terbaru
+        if ($request->has('search') && $request->search != '') {
+            $query->where('title', 'like', '%' . $request->search . '%');
+        }
+        // Ambil 3 artikel terbaru dari hasil pencarian
         $latestArticles = $query->latest()->take(3)->get();
         $latestMain = $latestArticles->first();
         $latestSide = $latestArticles->skip(1);
-
         // Sisanya untuk list artikel bawah
-        $articles = Article::with('admin', 'categories')
-            ->when($request->has('search') && $request->search != '', function($q) use ($request) {
-                $q->where('title', 'like', '%' . $request->search . '%');
-            })
+        $articles = (clone $query)
             ->whereNotIn('id_article', $latestArticles->pluck('id_article'))
             ->latest()
             ->paginate(9)
             ->withQueryString();
+
+        // Jika tidak ada artikel tersisa, pastikan $articles tetap collection kosong
+        if (!isset($articles)) {
+            $articles = collect();
+        }
 
         $categories = \App\Models\Category::all();
         return view('public.articles.index', compact('latestMain', 'latestSide', 'articles', 'categories'));
