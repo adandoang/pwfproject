@@ -28,8 +28,9 @@
                 <a href="{{ route('articles.index') }}" class="flex items-center px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors duration-200 {{ request()->routeIs('articles.*') ? 'bg-purple-600/30 text-white' : '' }}">Articles</a>
                 <a href="{{ route('categories.index') }}" class="flex items-center px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors duration-200 {{ request()->routeIs('categories.*') ? 'bg-purple-600/30 text-white' : '' }}">Categories</a>
             </nav>
-            <div class="mt-auto pt-10">
-                 <form action="{{ route('logout') }}" method="POST">
+            <div class="mt-auto pt-10 space-y-2">
+                <a href="{{ route('home') }}" class="w-full flex items-center px-4 py-2 rounded-lg bg-gradient-to-r from-purple-500 to-pink-600 text-white font-bold shadow-lg hover:from-purple-600 hover:to-pink-700 transition mb-2">Lihat Halaman Utama</a>
+                <form action="{{ route('logout') }}" method="POST">
                     @csrf
                     <button type="submit" class="w-full text-left flex items-center px-4 py-2 rounded-lg hover:bg-red-500/20 hover:text-red-400 transition-colors duration-200">Logout</button>
                 </form>

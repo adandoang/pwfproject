@@ -23,7 +23,16 @@
         <div class="container mx-auto flex justify-between items-center">
             <a href="{{ route('home') }}" class="text-2xl font-bold font-space bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">Business Articles</a>
             <div class="space-x-4">
-                <a href="{{ route('login') }}" class="bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white font-bold py-2 px-6 rounded-lg shadow-lg transition-transform transform hover:scale-105">Login</a>
+                @php use Illuminate\Support\Facades\Auth; @endphp
+                @if (Auth::guard('admin')->check())
+                    <a href="{{ route('admin.dashboard') }}" class="bg-gray-800 text-white font-bold py-2 px-6 rounded-lg shadow-lg hover:bg-purple-700 transition-transform transform hover:scale-105">Kembali ke Dashboard Admin</a>
+                    <form action="{{ route('logout') }}" method="POST" class="inline">
+                        @csrf
+                        <button type="submit" class="bg-gradient-to-r from-red-500 to-pink-600 hover:from-red-600 hover:to-pink-700 text-white font-bold py-2 px-6 rounded-lg shadow-lg transition-transform transform hover:scale-105 ml-2">Logout</button>
+                    </form>
+                @else
+                    <a href="{{ route('login') }}" class="bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white font-bold py-2 px-6 rounded-lg shadow-lg transition-transform transform hover:scale-105">Login</a>
+                @endif
             </div>
         </div>
     </nav>
