@@ -11,7 +11,7 @@ use Tests\TestCase;
 
 class CategoryControllerTest extends TestCase
 {
-    use RefreshDatabase;
+    // use RefreshDatabase;
 
     protected function authenticateAdmin()
     {

@@ -10,7 +10,7 @@ use Tests\TestCase;
 
 class WebRouteTest extends TestCase
 {
-    use RefreshDatabase;
+    // use RefreshDatabase;
 
     public function test_homepage_is_accessible()
     {

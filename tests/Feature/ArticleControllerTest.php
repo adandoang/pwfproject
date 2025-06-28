@@ -13,7 +13,7 @@ use Tests\TestCase;
 
 class ArticleControllerTest extends TestCase
 {
-    use RefreshDatabase;
+    // use RefreshDatabase;
 
     public function test_article_index_view()
     {

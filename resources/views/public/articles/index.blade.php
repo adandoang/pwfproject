@@ -5,9 +5,9 @@
 @section('content')
     <div class="text-center mb-12">
         <h1 class="text-5xl font-bold font-space mb-2 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
-            Latest Articles
+            Articles
         </h1>
-        <p class="text-lg text-gray-400">Explore the latest thoughts and ideas from our authors.</p>
+        <p class="text-lg text-gray-400">Explore the thoughts and ideas from our authors.</p>
     </div>
 
     <div class="mb-8 max-w-lg mx-auto">
@@ -67,7 +67,7 @@
             </div>
             <!-- List artikel kecil di kanan (max 3) -->
             <div class="flex flex-col gap-4 h-full justify-between">
-                <h3 class="text-xl font-bold text-white mb-2 border-b border-gray-700 pb-2">Latest News</h3>
+                <h3 class="text-xl font-bold text-white mb-2 border-b border-gray-700 pb-2">Latest Article</h3>
                 @if(isset($latestSide))
                     @foreach($latestSide as $article)
                         <div class="flex gap-4 items-center bg-gray-800/60 border border-gray-700 rounded-lg overflow-hidden p-3 flex-1 min-h-[88px]">
